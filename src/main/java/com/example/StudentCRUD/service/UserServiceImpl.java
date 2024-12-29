@@ -54,7 +54,8 @@ public class UserServiceImpl implements UserService{
     @Override
     public ResponseEntity<String> saveNewUser(UserDTO user) {
         try {
-//            user.setRoles(Arrays.asList("USER","ADMIN"));
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            user.setRoles(Arrays.asList("USER","ADMIN"));
             User userEntity = modelMapper.map(user, User.class);
             User savedUser = userRepository.save(userEntity);
             return new ResponseEntity<>("User created with ID: " + savedUser.getId(), HttpStatus.CREATED);
@@ -83,16 +84,22 @@ public class UserServiceImpl implements UserService{
     public ResponseEntity<String> updateUser(UserDTO userDTO) {
         try {
 
+            if (userDTO.getId() == null) {
+                return new ResponseEntity<>("User ID must not be null.", HttpStatus.BAD_REQUEST);
+            }
+
             if (userRepository.existsById(userDTO.getId())) {
 
                 User existingUser = userRepository.findById(userDTO.getId()).orElseThrow(() ->
                         new RuntimeException("User with ID " + userDTO.getId() + " not found."));
+
+                existingUser.setId(userDTO.getId());
                 existingUser.setName(userDTO.getName());
                 existingUser.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-//                existingUser.setAge(userDTO.getAge());
-//                existingUser.setEmail(userDTO.getEmail());
-//                existingUser.setDob(userDTO.getDob());
-//                existingUser.setRoles(userDTO.getRoles());
+//            existingUser.setAge(userDTO.getAge());
+//            existingUser.setEmail(userDTO.getEmail());
+//            existingUser.setDob(userDTO.getDob());
+//            existingUser.setRoles(userDTO.getRoles());
 
                 userRepository.save(existingUser);
 

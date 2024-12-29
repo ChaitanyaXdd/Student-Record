@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "api/v1/public")
+@RequestMapping("/api/v1/public")
 public class PublicController {
 
     private final UserServiceImpl userService;

@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserPrincipal implements UserDetails {
@@ -23,6 +24,8 @@ public class UserPrincipal implements UserDetails {
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
     }
+
+
 
     @Override
     public String getPassword() {

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/student")
+@RequestMapping("/api/v1/student")
 public class StudentController {
 
     private final StudentService studentService;
@@ -27,7 +27,7 @@ public class StudentController {
         return studentService.createNewStudent(student);
     }
 
-    @DeleteMapping(path = "{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteStudentById(@PathVariable("id") Long id){
         return studentService.deleteStudentById(id);
     }

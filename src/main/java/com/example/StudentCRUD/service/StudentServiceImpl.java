@@ -72,10 +72,10 @@ public class StudentServiceImpl implements StudentService{
 
                 Student existingStudent = studentRepository.findById(id).orElseThrow(() ->
                         new RuntimeException("Student with ID " + id + " not found."));
-                existingStudent.setName(studentDTO.getName());
-                existingStudent.setAge(studentDTO.getAge());
+                existingStudent.setName(existingStudent.getName());
+                existingStudent.setAge(existingStudent.getAge());
                 existingStudent.setEmail(studentDTO.getEmail());
-                existingStudent.setDob(studentDTO.getDob());
+                existingStudent.setDob(existingStudent.getDob());
 
                 studentRepository.save(existingStudent);
 

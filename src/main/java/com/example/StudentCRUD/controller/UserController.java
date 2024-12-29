@@ -12,25 +12,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/user")
+@RequestMapping("/api/v1/user")
 public class UserController {
 
     private final UserService userService;
 
-    private final UserRepository userRepository;
 
-    public UserController(UserService userService, UserRepository userRepository) {
+
+    public UserController(UserService userService) {
         this.userService = userService;
-        this.userRepository = userRepository;
     }
 
 
 
-    @DeleteMapping
-    public ResponseEntity<String> deleteUser(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        userRepository.deleteByName(authentication.getName());
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable Long id){
+        return userService.deleteUserById(id);
     }
 
     @PutMapping
