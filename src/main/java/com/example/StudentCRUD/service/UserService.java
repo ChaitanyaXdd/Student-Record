@@ -1,6 +1,7 @@
 package com.example.StudentCRUD.service;
 
 import com.example.StudentCRUD.dto.UserDTO;
+import com.example.StudentCRUD.entity.User;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -12,4 +13,5 @@ public interface UserService{
     public ResponseEntity<String> deleteUserById(Long id);
     public ResponseEntity<String> updateUser(UserDTO userDTO);
     public ResponseEntity<UserDTO> getUserById(Long id);
+//    public ResponseEntity<String> verify(User user);
 }

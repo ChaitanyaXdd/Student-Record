@@ -3,11 +3,14 @@ package com.example.StudentCRUD.service;
 import com.example.StudentCRUD.dto.UserDTO;
 import com.example.StudentCRUD.entity.User;
 import com.example.StudentCRUD.repository.UserRepository;
+import com.example.StudentCRUD.util.JwtUtil;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,6 +26,12 @@ public class UserServiceImpl implements UserService{
     private final ModelMapper modelMapper;
     private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     private static final Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
+
+    @Autowired
+    AuthenticationManager authenticationManager;
+
+    @Autowired
+    private JwtUtil jwtUtil;
 
 
 
@@ -157,6 +166,27 @@ public class UserServiceImpl implements UserService{
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+//    @Override
+//    public ResponseEntity<String> verify(User user) {
+////        User user = modelMapper.map(userDTO, User.class);
+////        Optional<User> user = userRepository.findByEmail(userDTO.getEmail());
+////        if (userRepository.existsById(userDTO.getId())){
+////            User user = userRepository.findByEmail(userDTO.getEmail());
+////        }
+//        try {
+//            Authentication authentication = authenticationManager.authenticate(
+//                    new UsernamePasswordAuthenticationToken(user.getName(), user.getPassword()));
+//
+//            if (authentication.isAuthenticated()) {
+//                return new ResponseEntity<>(jwtService.generateToken(user.getName()), HttpStatus.OK);
+//            } else {
+//                return new ResponseEntity<>("Failure", HttpStatus.UNAUTHORIZED);
+//            }
+//        } catch (Exception ex) {
+//            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+//        }
+//    }
 }
 
 
