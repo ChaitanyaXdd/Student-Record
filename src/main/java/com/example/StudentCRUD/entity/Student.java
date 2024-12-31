@@ -10,8 +10,9 @@ import java.time.LocalDate;
 @Data
 public class Student {
     @Id
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "student_seq", sequenceName = "student_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_seq")
     private Long id;
 
     private String name;
