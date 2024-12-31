@@ -1,7 +1,6 @@
 package com.example.StudentCRUD.controller;
 
 import com.example.StudentCRUD.dto.UserDTO;
-import com.example.StudentCRUD.service.UserService;
 import com.example.StudentCRUD.service.UserServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
