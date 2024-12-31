@@ -5,7 +5,6 @@ import com.example.StudentCRUD.entity.User;
 import com.example.StudentCRUD.service.UserDetailsServiceImpl;
 import com.example.StudentCRUD.service.UserServiceImpl;
 import com.example.StudentCRUD.util.JwtUtil;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,8 +55,8 @@ public class PublicController {
             return new ResponseEntity<>(jwt, HttpStatus.OK);
         }
         catch (Exception e){
-            log.error("Exception occurred while createAuthenticationToken ",e);
-            return new ResponseEntity<>("Incorrect userName or password",HttpStatus.BAD_REQUEST);
+            log.error("Exception occurred while creating Authentication Token ",e);
+            return new ResponseEntity<>("Incorrect UserName or Password",HttpStatus.BAD_REQUEST);
         }
     }
 
